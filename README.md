@@ -1,62 +1,73 @@
-# Prueba Técnica para el Puesto de Líder Técnico
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-Bienvenido a la prueba técnica para el puesto de Líder Técnico en nuestro negocio de préstamos. Esta prueba tiene como objetivo evaluar tu capacidad para diseñar e implementar un producto mínimo viable (MVP) de backend que simule un sistema de gestión de préstamos.
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## Instrucciones
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-Debes crear una aplicación backend con las siguientes funcionalidades:
+## Description
 
-### Requisitos Funcionales
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-#### Crear un Usuario
+## Installation
 
-- **Endpoint:** POST /usuarios/
-- **Descripción:** Este endpoint debe permitir la creación de un nuevo usuario en el sistema.
-- **Define el Request Body y Response**
+```bash
+$ yarn install
+```
 
-#### Crear Ofertas para un Usuario
+## Running the app
 
-- **Endpoint:** POST /usuarios/{userId}/ofertas/
-- **Descripción:** Este endpoint debe permitir la creación de un conjunto de ofertas de préstamo para un usuario específico. Las ofertas pueden variar en montos, plazos, etc. Deben crearse al menos 2 ofertas por usuario.
-- **Define el Request Body y Response**
+```bash
+# development
+$ yarn run start
 
-#### Crear un Préstamo Basado en la Oferta Seleccionada
+# watch mode
+$ yarn run start:dev
 
-- **Endpoint:** POST /usuarios/{userId}/prestamos/
-- **Descripción:** Este endpoint debe permitir la creación de un préstamo basado en una oferta seleccionada para un usuario. El préstamo debe incluir un calendario de pagos, por ejemplo, si el préstamo es a 4 semanas, se deben crear 4 entradas donde cada una corresponde a un pago esperado.
-- **Define el Request Body y Response**
+# production mode
+$ yarn run start:prod
+```
 
-#### Aplicar un Pago
+## Test
 
-- **Endpoint:** POST /prestamos/{loanId}/pagos/
-- **Descripción:** Este endpoint debe permitir la aplicación de un pago a un préstamo existente. Al llegar al último pago, el préstamo debe marcarse como pagado. Nota: Un punto extra podría ser considerar pagos parciales. Por ejemplo, si el pago esperado es de 250 y solo se pagan 100, deben quedar 150 restantes, pero el pago sigue como pendiente.
-- **Define el Request Body y Response**
+```bash
+# unit tests
+$ yarn run test
 
-### Puntos Extra
+# e2e tests
+$ yarn run test:e2e
 
-#### Agregar Autenticación a los Endpoints
+# test coverage
+$ yarn run test:cov
+```
 
-Implementa un mecanismo de autenticación para todos los endpoints. Puedes usar autenticación basada en tokens (por ejemplo, JWT).
+## Support
 
-#### Crear un Endpoint para Revertir un Pago
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-- **Endpoint:** POST /pagos/{paymentId}/revertir/
-- **Descripción:** Este endpoint debe permitir la reversión de un pago aplicado anteriormente, incluyendo toda la lógica que ello conlleva.
-- **Define el Request Body y Response**
+## Stay in touch
 
-### Esquema de la Base de Datos
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-Debes proponer los esquemas de la base de datos para el sistema. Puedes usar SQLite y subir el archivo de la base de datos en tu entrega. Asegúrate de que tu esquema pueda manejar las funcionalidades requeridas de manera efectiva.
+## License
 
-### Tiempo Esperado
-
-El tiempo esperado para completar esta prueba es de 10 horas. Por favor, planifica tu trabajo en consecuencia.
-
-### Pautas de Entrega
-
-Tu código debe estar escrito en un lenguaje backend de tu elección, idealmente Node.js. Si eliges otro lenguaje, proporciona instrucciones claras sobre cómo ejecutar tu proyecto.
-Haz un fork de este proyecto.
-Al concluir, envíanos la liga de tu fork para poder probarlo.
-
-¡Buena Suerte!
-¡Gracias por tu participación!
+Nest is [MIT licensed](LICENSE).
