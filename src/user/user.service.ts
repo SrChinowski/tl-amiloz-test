@@ -23,7 +23,7 @@ export class UserService {
         return bcrypt.hash(password, salt);
     }
     async createCommonUser(userDto: CreateUserDto): Promise<User> {
-      const { pass, score, profile, email } = userDto;
+      const { pass, score, profile, email, role } = userDto;
       try {
         // Generar el hash de la contraseña con salt
         const hashedPassword = await this.hashPassword(pass);
@@ -39,7 +39,7 @@ export class UserService {
         const user = this.userRepository.create({
           id_profile: _profile.id,
           email: email,
-          role: UserRoles.common, // Asegúrate de usar el campo correcto
+          role: role, 
           pass: hashedPassword,
           score: score,
         });

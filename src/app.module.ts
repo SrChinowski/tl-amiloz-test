@@ -11,6 +11,7 @@ import { LoggerMiddleware } from './utils/middleware/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfileModule } from './profile/profile.module';
 import { OfferModule } from './offer/offer.module';
+import { UserOfferModule } from './user_offer/user_offer.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { OfferModule } from './offer/offer.module';
     AuthModule,
     ProfileModule,
     OfferModule,
+    UserOfferModule,
   ],
   controllers: [AppController],
   providers: [

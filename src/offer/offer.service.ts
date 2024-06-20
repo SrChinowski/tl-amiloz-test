@@ -1,26 +1,38 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Offer } from './entities/offer.entity';
+import { LessThanOrEqual, Repository } from 'typeorm';
 
 @Injectable()
 export class OfferService {
-  create(createOfferDto: CreateOfferDto) {
-    return 'This action adds a new offer';
+  constructor(
+    @InjectRepository(Offer)
+    private offerRepository: Repository<Offer>,
+  ) {}
+
+  async create(createOfferDto: CreateOfferDto): Promise<Offer> {
+    try {
+      const offer = this.offerRepository.create(createOfferDto);
+      return await this.offerRepository.save(offer);
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException(error);
+    }
   }
 
-  findAll() {
-    return `This action returns all offer`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} offer`;
-  }
-
-  update(id: number, updateOfferDto: UpdateOfferDto) {
-    return `This action updates a #${id} offer`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} offer`;
+  async findOffersByScore(score: number): Promise<Offer[]> {
+    try {
+      const offers = await this.offerRepository.find({
+        where: {
+          min_score: LessThanOrEqual(score)
+        }
+      });
+      return offers;
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException(error);
+    }
   }
 }
