@@ -1,10 +1,58 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './utils/filters/allExceptions.filter';
+import { join } from 'path';
+import { AuthMiddleware } from './utils/middleware/jwt.middleware';
+import { LoggerMiddleware } from './utils/middleware/logger.middleware';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProfileModule } from './profile/profile.module';
+import { OfferModule } from './offer/offer.module';
 
 @Module({
-  imports: [],
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: [
+        process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
+      ],
+    }),
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'database.sqlite',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true, // Just dev
+    }),
+    AuthModule,
+    ProfileModule,
+    OfferModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    },
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer
+      .apply(AuthMiddleware)
+      .exclude(
+        { path: 'auth/sign', method: RequestMethod.POST },
+      )
+      .forRoutes('*');
+
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('*');
+  }
+
+}
