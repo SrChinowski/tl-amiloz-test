@@ -73,4 +73,18 @@ export class AmortizationService {
       throw new InternalServerErrorException('Failed to apply payment');
     }
   }
+
+  async update(_id: string, _data: any) : Promise<Amortization> {
+    try {
+      await this.amortizacionRepository.update(_id, _data);
+      return await this.amortizacionRepository.findOne({
+        where: {
+          id: _id
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException('Failed to update amortization');
+    }
+  }
 }

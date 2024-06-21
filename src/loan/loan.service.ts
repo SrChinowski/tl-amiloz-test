@@ -82,7 +82,13 @@ export class LoanService {
     }
 
     //Aplicamos el pago
-    await this.amortizationService.applyPayment(_amortizacion);
+    const res_amor = await this.amortizationService.applyPayment(_amortizacion);
+
+    //validamos si es el ultimo
+    if(res_amor.rest_amount === 0){
+      //Marcar el prestamo como pagado
+      await this.loanRepository.update(_loan.id, { pagado: true });
+    }
 
     //Registramos el pago
     const _payment = await this.paymentsService.create({
