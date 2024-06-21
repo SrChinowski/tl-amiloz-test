@@ -26,3 +26,13 @@ export class CreateUserDto {
   @Type(() => CreateProfileDto)
   profile: CreateProfileDto;
 }
+
+export class UserCreateLoanDto {
+  @IsString()
+  @IsNotEmpty()
+  id_offer: string
+
+  @IsNumber()
+  @IsNotEmpty()
+  amount: number;
+}

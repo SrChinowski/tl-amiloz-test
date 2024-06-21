@@ -12,6 +12,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfileModule } from './profile/profile.module';
 import { OfferModule } from './offer/offer.module';
 import { UserOfferModule } from './user_offer/user_offer.module';
+import { LoanModule } from './loan/loan.module';
+import { AmortizationModule } from './amortization/amortization.module';
 
 @Module({
   imports: [
@@ -34,6 +36,8 @@ import { UserOfferModule } from './user_offer/user_offer.module';
     ProfileModule,
     OfferModule,
     UserOfferModule,
+    LoanModule,
+    AmortizationModule,
   ],
   controllers: [AppController],
   providers: [
@@ -49,6 +53,7 @@ export class AppModule {
       .apply(AuthMiddleware)
       .exclude(
         { path: 'auth/sign', method: RequestMethod.POST },
+        { path: 'usuarios/', method: RequestMethod.POST },
       )
       .forRoutes('*');
 
