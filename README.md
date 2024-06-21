@@ -1,73 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Prueba Técnica para el Puesto de Líder Técnico
+**Por Carlos Leon**  
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Introducción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Para esta prueba técnica, he decidido utilizar NestJS para aprovechar sus funcionalidades y optimizar tiempos de desarrollo. NestJS, con su arquitectura basada en módulos, proporciona la flexibilidad necesaria para escalar a microservicios.
 
-## Description
+## Supuestos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- El crédito se calcula sobre saldos globales con periodicidad semanal.
+- La base de datos se implementó usando SQLite y está ubicada en `./database.sqlite`.
+- La API está documentada con Swagger y es accesible en `http://localhost:5000/api`.
 
-## Installation
+## Ambientación
 
-```bash
-$ yarn install
-```
+Para configurar el entorno de desarrollo, utiliza los siguientes comandos:
 
-## Running the app
+- `yarn`
+- `yarn start:dev`
 
-```bash
-# development
-$ yarn run start
+## Proceso de Desarrollo
 
-# watch mode
-$ yarn run start:dev
+- **Definición del esquema de la base de datos**: El diagrama de la base de datos está disponible en `./docs/db_schema.drawio`. Para una mejor visualización, utilizar la extensión [vscode-drawio](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio).
+- **Desarrollo de módulos**: Construí un módulo por cada tabla en la base de datos.
+- **Gestión de la base de datos**: Utilicé TypeORM para manejar la base de datos, aprovechando su capacidad para manejar datos en formato JSON y persistirlos de manera relacional.
+- **Seguridad**: Implementé la lógica de seguridad utilizando JWT.
+- **Manejador de excepciones global**: Se agregó un manejador de excepciones global para evitar escribir bloques try-catch repetitivos y mejorar la legibilidad del código.
 
-# production mode
-$ yarn run start:prod
-```
+## Pruebas
 
-## Test
+- **Usuario de prueba**: Para las pruebas, utilicé el usuario `admin@admin.com` con la contraseña `admin`.
+- **Colección de Postman**: Generé una colección de Postman a partir de Thunder Client, disponible en la carpeta `docs`.
 
-```bash
-# unit tests
-$ yarn run test
+## Requisitos Funcionales
 
-# e2e tests
-$ yarn run test:e2e
+- (Aquí puedes listar los requisitos funcionales específicos de la prueba técnica).
 
-# test coverage
-$ yarn run test:cov
-```
+## Endpoints
 
-## Support
+### Crear un Usuario
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Endpoint:** `POST /usuarios/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/usuarios/UserController_create)
+- **Descripción:** Esta ruta, junto con `auth/sign/`, son las únicas que no requieren un JWT para facilitar las pruebas.
 
-## Stay in touch
+### Crear Ofertas para un Usuario
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Endpoint:** `POST /usuarios/{userId}/ofertas/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/Productos%20de%20credito%20%2F%20Ofertas%20Predefinidas/OfferController_create)
+- **Descripción:** 
+  - Para crear una oferta a un usuario, primero hay que llenar el catálogo de Ofertas `/offer`.
+  - Luego, asignar una oferta a un usuario validando parámetros del crédito (simulando un proceso de preaprobación) en `/user-offer`.
 
-## License
+### Crear un Préstamo Basado en la Oferta Seleccionada
 
-Nest is [MIT licensed](LICENSE).
+- **Endpoint:** `POST /usuarios/{userId}/prestamos/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/usuarios/UserController_createLoan)
+- **Descripción:** 
+  - Al crear un préstamo se valida si corresponde a un registro preaprobado.
+  - Se genera la tabla de amortización de acuerdo al préstamo.
+
+### Aplicar un Pago
+
+- **Endpoint:** `POST /prestamos/{loanId}/pagos/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/Pagos/PaymentController_create)
+- **Descripción:** 
+  - Para aplicar un pago se valida que el monto no sea menor al requerido, por lo que en esta implementación no se contemplan pagos parciales o adelantados. 
+  - Sin embargo, la adecuación sería:
+    - Definir en la tabla de amortización un campo de monto abonado.
+    - Al aplicar el pago en `amortization.service`:
+      - Si intereses > 0, restar a intereses.
+      - Si no, abonar a capital.
+      - Si el monto abonado > monto restante, abonar el sobrante al siguiente pago y registrarlo como otro pago para trazabilidad.
+      - Actualizar montos restantes de la tabla de amortización.
+
+  - Otro enfoque sería definir cuentas digitales para cada usuario donde se almacenaría el dinero hasta sumar el monto del pago y aplicarlo a la tabla de amortización.
+
+## Puntos Extra
+
+### Agregar Autenticación a los Endpoints
+
+- **Endpoint:** `POST /auth/sign/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/Auth%20JWT/AuthController_auth)
+- **Descripción:** 
+  - Se agregó seguridad con JWT y generación de hash con salt.
+
+### Crear un Endpoint para Revertir un Pago
+
+- **Endpoint:** `POST /pagos/{paymentId}/revertir/`
+- **Docs:** [Swagger Docs](http://localhost:5000/api#/Pagos/PaymentController_revert)
+- **Descripción:** 
+  - Al revertir un pago se marca el pago como revertido y se actualiza la tabla de amortización en su registro. Si el crédito está en estatus pagado, ya no aplica.
+
+---
