@@ -49,7 +49,7 @@ Para configurar el entorno de desarrollo, utiliza los siguientes comandos:
 - **Docs:** [Swagger Docs](http://localhost:5000/api#/Productos%20de%20credito%20%2F%20Ofertas%20Predefinidas/OfferController_create)
 - **Descripción:** 
   - Para crear una oferta a un usuario, primero hay que llenar el catálogo de Ofertas `/offer`.
-  - Luego, asignar una oferta a un usuario validando parámetros del crédito (simulando un proceso de preaprobación) en `/user-offer`.
+  - Al solicitar a este endpoint las ofertas del usuario se hara una comparacion por el score para asignarlas en user-offer
 
 ### Crear un Préstamo Basado en la Oferta Seleccionada
 
