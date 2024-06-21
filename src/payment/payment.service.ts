@@ -15,9 +15,12 @@ export class PaymentService {
   ) {}
 
   async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
-    console.log(createPaymentDto);
     try {
-      const payment = this.paymentRepository.create(createPaymentDto);
+      const payment = await this.paymentRepository.create({
+        amortization: createPaymentDto.amortizacion,
+        amount: createPaymentDto.amount,
+        reverted: false
+      });
       return await this.paymentRepository.save(payment);
     } catch (error) {
       console.error(error);

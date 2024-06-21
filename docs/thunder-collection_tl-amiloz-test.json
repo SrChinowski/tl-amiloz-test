@@ -1,0 +1,133 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "tl-amiloz-test",
+    "collectionId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+    "dateExported": "2024-06-21T21:14:32.902Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "92188404-8f7b-4f92-96aa-82f46e815a06",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Create User",
+            "url": "localhost:5000/usuarios",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-20T19:28:09.568Z",
+            "modified": "2024-06-21T04:11:22.332Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"role\": \"ADMIN\",\n  \"score\": 95.55,\n  \"email\": \"admin@admin.com\",\n  \"pass\": \"admin\",\n  \"profile\": {\n    \"name\": \"Test 01\",\n    \"address\": \"street 1 col SiempreViva\",\n    \"curp\": \"lev990910hdf10\"\n  }\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxODkxNDAxNiwiZXhwIjoxNzE5MDAwNDE2fQ.6GaS8kgxVAgtrZpl0_iYN7nehiNZAZVaV6eRmwZd_pU"
+            }
+        },
+        {
+            "_id": "fb9235e6-aeb2-4842-aba3-b466c5a2eff4",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Login",
+            "url": "localhost:5000/auth/sign",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-20T20:01:10.547Z",
+            "modified": "2024-06-21T04:12:41.965Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"admin\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "30dd4aa0-999c-4778-9517-57549c68871f",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Create Offer",
+            "url": "localhost:5000/offer",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-06-20T20:24:49.721Z",
+            "modified": "2024-06-21T04:13:00.088Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Basic Offer\",\n  \"min_score\": 50,\n  \"weeks_amount\": 12,\n  \"max_amount\": 10000,\n  \"interes\": 6\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3MTg5NDA5NzAsImV4cCI6MTcxOTAyNzM3MH0.wM5Z8-HDIGIv_r2MJcWAWzBOog1qg0V9kAp1oOmwKe8"
+            }
+        },
+        {
+            "_id": "ad639086-3cb5-47ad-9c32-0db50c37a98b",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Create user_offer",
+            "url": "localhost:5000/user-offer",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-06-20T20:54:58.348Z",
+            "modified": "2024-06-21T06:05:57.194Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_offer\" : \"f9d08180-598a-4700-9884-3959e3f5ef60\",\n  \"id_user\": \"1f3c23b9-a794-4ec0-a90f-c40be3caaf04\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxODkxNDAxNiwiZXhwIjoxNzE5MDAwNDE2fQ.6GaS8kgxVAgtrZpl0_iYN7nehiNZAZVaV6eRmwZd_pU"
+            }
+        },
+        {
+            "_id": "e7075876-1428-48a4-9e8d-30ac0601d360",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Create Loan",
+            "url": "localhost:5000/usuarios/1f3c23b9-a794-4ec0-a90f-c40be3caaf04/prestamos/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-06-21T02:26:42.454Z",
+            "modified": "2024-06-21T21:04:24.685Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_offer\": \"f9d08180-598a-4700-9884-3959e3f5ef60\",\n  \"amount\" : 8888\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxOTAwMzgzMywiZXhwIjoxNzE5MDkwMjMzfQ.ntz9_dJreXjlSv64VgTi4qJiBkAtBfeWDSI6MTD2_Kk"
+            }
+        },
+        {
+            "_id": "d8e1883d-9c5b-4516-b7d8-031579362d8f",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Create Payment",
+            "url": "localhost:5000/prestamos/68745ada-5c64-4383-b285-b6484dc00005/pagos/",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-06-21T06:08:58.883Z",
+            "modified": "2024-06-21T21:04:39.051Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"payment_amount\": 1433.19\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxOTAwMzgzMywiZXhwIjoxNzE5MDkwMjMzfQ.ntz9_dJreXjlSv64VgTi4qJiBkAtBfeWDSI6MTD2_Kk"
+            }
+        }
+    ],
+    "ref": "HjTX6N2QQg4Sfz6HXsqefny18l5Q2B_Ep-ZYSfTgksFzaTeawhphs7BhTjfbfhfhAyqeofxdIPtQwt0qbhzF-A"
+}
