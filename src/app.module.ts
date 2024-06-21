@@ -14,6 +14,7 @@ import { OfferModule } from './offer/offer.module';
 import { UserOfferModule } from './user_offer/user_offer.module';
 import { LoanModule } from './loan/loan.module';
 import { AmortizationModule } from './amortization/amortization.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { AmortizationModule } from './amortization/amortization.module';
     UserOfferModule,
     LoanModule,
     AmortizationModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [

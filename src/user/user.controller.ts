@@ -8,7 +8,6 @@ import { UserOfferService } from 'src/user_offer/user_offer.service';
 import { OfferService } from 'src/offer/offer.service';
 import { Offer } from 'src/offer/entities/offer.entity';
 import { LoanService } from 'src/loan/loan.service';
-import { Loan } from 'src/loan/entities/loan.entity';
 
 @Controller('usuarios')
 export class UserController {
@@ -66,7 +65,7 @@ export class UserController {
     async createLoan(
       @Param('userId') userId: string,
       @Body() createLoanDTO: UserCreateLoanDto
-    ): Promise<ControllerResponse<Loan>> {
+    ): Promise<ControllerResponse<any>> {
 
       const {id_offer, amount} = createLoanDTO;
 

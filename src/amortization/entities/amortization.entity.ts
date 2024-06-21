@@ -37,6 +37,10 @@ export class Amortization {
   @ApiProperty({ description: 'Monto total del prestamo restante por cubrir' })
   rest_amount: number;
 
+  @Column({default: () => false})
+  @ApiProperty({ description: 'Si el pago ha sido saldad' })
+  pagado: boolean;
+
   @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   @ApiProperty({ description: 'Fecha de creación' })
   created_at: Date;

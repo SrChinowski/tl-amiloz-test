@@ -3,6 +3,7 @@ import { CreateAmortizationDto } from './dto/create-amortization.dto';
 import { Amortization } from './entities/amortization.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Loan } from 'src/loan/entities/loan.entity';
 
 @Injectable()
 export class AmortizationService {
@@ -23,7 +24,7 @@ export class AmortizationService {
     const pago_semanal = pago_capital + intereses_semanales
 
     for (let i = 1; i <= weeks_amount; i++) {
-      saldo_global -= intereses_semanales - pago_capital;
+      saldo_global = (saldo_global + intereses_semanales) - pago_semanal;
 
       amortizations.push({
           no_pago: i,
@@ -42,6 +43,34 @@ export class AmortizationService {
     } catch (error) {
       console.error(error);
       throw new InternalServerErrorException('Failed to create amortization schedule');
+    }
+  }
+
+  async getFirstPayment(_loan: Loan) : Promise<Amortization> {
+
+    const _res = await this.amortizacionRepository.findOne({
+      where: {
+        loan: { id: _loan.id },
+        pagado: false
+      },
+      order: {
+        no_pago: 'ASC'
+      }
+    });
+    if(!_res){
+      throw new InternalServerErrorException('Failed to get first payment');
+    }
+
+    return _res
+  }
+
+  async applyPayment(_amortization: Amortization) : Promise<Amortization> {
+    _amortization.pagado = true;
+    try {
+      return await this.amortizacionRepository.save(_amortization);
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException('Failed to apply payment');
     }
   }
 }

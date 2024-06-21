@@ -1,13 +1,25 @@
-import { Controller, Post, Body, } from '@nestjs/common';
+import { Controller, Post, Body, Param, } from '@nestjs/common';
 import { LoanService } from './loan.service';
-import { CreateLoanDto } from './dto/create-loan.dto';
+import { CreatePaymentDTO } from './dto/create-payment';
+import { ControllerResponse } from 'src/types/interfaces';
+import { Payment } from 'src/payment/entities/payment.entity';
 
-@Controller('loan')
+@Controller('prestamos')
 export class LoanController {
   constructor(private readonly loanService: LoanService) {}
 
-  @Post()
-  create(@Body() createLoanDto: CreateLoanDto) {
-    return this.loanService.create(createLoanDto);
+  @Post(":loanId/pagos/")
+  async createPayment(
+    @Param('loanId') loanId: string,
+    @Body() createPaymentDTO: CreatePaymentDTO
+  ): Promise<ControllerResponse<Payment>>{
+    
+    const { payment_amount } = createPaymentDTO
+
+    return {
+      success: true,
+      code: 201,
+      res: await this.loanService.createPayment(payment_amount, loanId)
+    }
   }
 }
