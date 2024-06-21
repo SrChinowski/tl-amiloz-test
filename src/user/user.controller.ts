@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ControllerResponse } from 'src/types/interfaces';
 import { User } from './entities/user.entity';
@@ -8,7 +8,8 @@ import { UserOfferService } from 'src/user_offer/user_offer.service';
 import { OfferService } from 'src/offer/offer.service';
 import { Offer } from 'src/offer/entities/offer.entity';
 import { LoanService } from 'src/loan/loan.service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('usuarios')
 @Controller('usuarios')
 export class UserController {
     constructor(

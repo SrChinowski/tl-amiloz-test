@@ -3,6 +3,8 @@ import { LoanService } from './loan.service';
 import { CreatePaymentDTO } from './dto/create-payment';
 import { ControllerResponse } from 'src/types/interfaces';
 import { Payment } from 'src/payment/entities/payment.entity';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Prestamos')
 
 @Controller('prestamos')
 export class LoanController {

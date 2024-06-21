@@ -2,6 +2,8 @@ import { Body, Controller, Post} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { authDTO } from './dto/auth.dto';
 import { ControllerResponse } from 'src/types/interfaces';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Auth JWT')
 
 @Controller('auth')
 export class AuthController {

@@ -3,6 +3,8 @@ import { PaymentService } from './payment.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { ControllerResponse } from 'src/types/interfaces';
 import { Payment } from './entities/payment.entity';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Pagos')
 
 @Controller('pagos')
 export class PaymentController {

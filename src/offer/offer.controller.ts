@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, } from '@nestjs/common';
 import { OfferService } from './offer.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
-import { UpdateOfferDto } from './dto/update-offer.dto';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Productos de credito / Ofertas Predefinidas')
 
 @Controller('offer')
 export class OfferController {
