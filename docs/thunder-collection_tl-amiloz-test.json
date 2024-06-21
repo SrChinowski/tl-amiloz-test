@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "tl-amiloz-test",
     "collectionId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
-    "dateExported": "2024-06-21T21:14:32.902Z",
+    "dateExported": "2024-06-21T22:09:30.831Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -53,11 +53,11 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2024-06-20T20:24:49.721Z",
-            "modified": "2024-06-21T04:13:00.088Z",
+            "modified": "2024-06-21T21:45:04.191Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Basic Offer\",\n  \"min_score\": 50,\n  \"weeks_amount\": 12,\n  \"max_amount\": 10000,\n  \"interes\": 6\n}",
+                "raw": "{\n  \"name\": \"Initial Offer\",\n  \"min_score\": 20,\n  \"weeks_amount\": 8,\n  \"max_amount\": 5000,\n  \"interes\": 8\n}",
                 "form": []
             },
             "auth": {
@@ -127,7 +127,23 @@
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxOTAwMzgzMywiZXhwIjoxNzE5MDkwMjMzfQ.ntz9_dJreXjlSv64VgTi4qJiBkAtBfeWDSI6MTD2_Kk"
             }
+        },
+        {
+            "_id": "15ec6dbc-5a5d-4293-9041-b81f753acf7b",
+            "colId": "54e591a8-9f16-495f-8bb8-39d4921c8fee",
+            "containerId": "",
+            "name": "Ofertas por usuario",
+            "url": "localhost:5000/usuarios/1f3c23b9-a794-4ec0-a90f-c40be3caaf04/ofertas/",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-06-21T22:09:11.205Z",
+            "modified": "2024-06-21T22:09:27.212Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxOTAwNzYyNywiZXhwIjoxNzE5MDk0MDI3fQ.LimZfoh_Gmjv484AApvjPEi9cOJmI2HTMo-PBB9Xmd4"
+            }
         }
     ],
-    "ref": "HjTX6N2QQg4Sfz6HXsqefny18l5Q2B_Ep-ZYSfTgksFzaTeawhphs7BhTjfbfhfhAyqeofxdIPtQwt0qbhzF-A"
+    "ref": "HjTX6N2QQg4Sfz6HXsqefnK3hKHCbsDivDR_XFL6T55ijjts0Xx_btYUy7xbdlFbk07o-UhHdbQ2mLZ3tyeDmw"
 }
